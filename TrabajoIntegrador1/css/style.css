@@ -9,12 +9,37 @@
     color: #25a342;
 }
 
-.navbar-brand img{
+.navbar-brand img
+{
     max-width: 10rem;
 }
 
-.carousel-item
+.opacidadSlide
 {
-    /* opacity: .6; */
-    filter: brightness(60%);
+    filter: brightness(40%);
 }
+
+.carousel-caption
+{   
+    position: absolute;
+    margin: 10% 35%;
+ }
+
+ td
+ {
+    width: 50%;
+    vertical-align: top;
+ }
+
+ #btnEnviarContacto
+ {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+ }
+
+ footer
+ {
+    background: rgb(27,65,102);
+    background: linear-gradient(90deg, rgba(27,65,102,1) 64%, rgba(35,117,166,1) 100%);
+    vertical-align: middle;
+ }
