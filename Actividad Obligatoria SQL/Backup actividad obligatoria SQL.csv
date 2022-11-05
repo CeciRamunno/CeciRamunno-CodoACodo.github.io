@@ -1,0 +1,6 @@
+id,nombre,apellido,edad,fecha,provincia
+1,Juan,Gomez,15,"1999-05-18 00:15:00","Santa Fe"
+2,Maria,Gutierrez,64,"1975-05-18 00:15:00",Corrientes
+3,Juana,Maldonado,23,"2000-01-11 00:15:00","Entre Ríos"
+4,Gonzalo,Garcia,29,"1990-11-14 00:15:00","Tierra del Fuego"
+5,Marcelo,Suarez,86,"1980-04-21 00:15:00",Mendoza
