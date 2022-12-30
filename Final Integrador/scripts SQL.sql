@@ -10,9 +10,8 @@ localidad VARCHAR(40) NOT NULL,
 fecha_nacimiento DATE NOT NULL,
 email VARCHAR(30) NOT NULL,
 telefono VARCHAR(25) NOT NULL,
-activo bool NOT NULL
+activo boolean NOT NULL
 );
-ALTER TABLE socios RENAME COLUMN id_ocio TO id_socio;
 
 INSERT INTO SOCIOS
 (nombre, apellido, direccion, localidad, fecha_nacimiento, email, telefono, activo)
