@@ -19,7 +19,7 @@ public class Conexion
         try
         {
             Class.forName(driver);
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/codoacodo","root","chechuSQL");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/GIMNASIO","root","chechuSQL");
         }
         catch(ClassNotFoundException|SQLDataException e)
         {
@@ -42,7 +42,7 @@ public class Conexion
         
         while(rs.next())
         {
-            int id = rs.getInt("idSocio");
+            int id = rs.getInt("id_socio");
             String nombre = rs.getString("nombre");
             System.out.println("ID " + id + " nombre " + nombre);
         }

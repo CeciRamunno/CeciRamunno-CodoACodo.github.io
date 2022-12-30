@@ -11,10 +11,20 @@
         <title>Alta socio.</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/2cbbc87d30.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </head>
     <body>
+        <header>
+            <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                  <span class="navbar-brand mb-0 h1">Proyecto Gimnasio 🏋️‍</span>
+                </div>
+            </nav>
+        </header>
+        
+        <main>
         <div class="container">
             <h1 class="text-center">Nuevo socio</h1>
             <div class="row">
@@ -37,11 +47,11 @@
                     </div>
                     <div class="mb-2">
                         <label for="fechaNac" class="form-label">Fecha Nacimiento</label>
-                        <input type="date" class="form-control" id="fechaNac" name="fechaNac">
+                        <input type="date" class="form-control" id="fechaNac" name="fecha_nacimiento">
                     </div>                                                        
                     <div class="mb-2">
                         <label for="mail" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="mail" name="mail">
+                        <input type="email" class="form-control" id="mail" name="email">
                     </div>
                     <div class="mb-2">
                         <label for="telefono" class="form-label">Telefono</label>
@@ -54,11 +64,21 @@
                     </div>
                     -->
 
-                    <button type="submit" class="btn btn-primary">Agregar socio</button>
-                    <!--todo    agregar reset campos -->
+                    <button class="btn btn-primary" type="submit">Agregar socio</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <input type="button" class="btn btn-info" onclick="history.back();" value="Volver">
                 </form>
-                
             </div>
         </div>
+    </main>
+    <footer>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid justify-content-center align-items-end">
+                <span class="navbar-text">
+                    Trabajo Integrador JAVA Full Stack 2022 - Maria Cecilia Ramunno <a href="https://www.linkedin.com/in/maceciliaramunno/" target="_blank><i class="fa-brands fa-linkedin"></i></a> <a href="https://github.com/CeciRamunno/CeciRamunno-CodoACodo.github.io" target="_blank><i class="fa-brands fa-github"></i></a>
+                </span>
+            </div>
+        </nav>     
+    </footer>
     </body>
 </html>

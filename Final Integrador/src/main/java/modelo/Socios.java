@@ -34,11 +34,6 @@ public class Socios
         this.activo = activo;
     }
     
-    public Socios()
-    {
-        
-    }
-
     public int getId() {
         return id;
     }
@@ -110,7 +105,4 @@ public class Socios
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
-    
-    
 }

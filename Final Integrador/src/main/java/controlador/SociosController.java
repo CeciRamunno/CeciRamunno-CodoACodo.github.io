@@ -5,7 +5,7 @@
 package controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,10 +25,18 @@ public class SociosController extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        SociosDAO sociosDAO = new SociosDAO();
+        SociosDAO sociosDAO = null;
+        try
+        {
+            sociosDAO = new SociosDAO();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error: " + ex);
+        }
+        
         String accion;
         RequestDispatcher dispatcher = null;
-        
         accion = request.getParameter("accion");
         
         if(accion == null || accion.isEmpty())
@@ -41,17 +49,19 @@ public class SociosController extends HttpServlet
         }
         else if(accion.equals("actualizar"))
         {
-           int id = Integer.parseInt(request.getParameter("id"));
+           int id = Integer.parseInt(request.getParameter("id_socio"));
            String nombre = request.getParameter("nombre");
            String apellido = request.getParameter("apellido");
            String direccion = request.getParameter("direccion");
            String localidad = request.getParameter("localidad");
-           LocalDate fechaNac = LocalDate.parse(request.getParameter("fechaNac"));
-           String mail = request.getParameter("mail");
+           LocalDate fechaNac = LocalDate.parse(request.getParameter("fecha_nacimiento"));
+           String mail = request.getParameter("email");
            String telefono = request.getParameter("telefono");
            
            Socios socio = new Socios(id, nombre, apellido, direccion, localidad, fechaNac, mail, telefono, true);
+           //if(socio != null)
            sociosDAO.actualizarSocios(socio);
+           
            dispatcher = request.getRequestDispatcher("Vistas/socios.jsp");
         }
         else if(accion.equals("eliminar"))
@@ -70,9 +80,10 @@ public class SociosController extends HttpServlet
            String apellido = request.getParameter("apellido");
            String direccion = request.getParameter("direccion");
            String localidad = request.getParameter("localidad");
-           LocalDate fechaNac = LocalDate.parse(request.getParameter("fechaNac"));
-           String mail = request.getParameter("mail");
+           LocalDate fechaNac = LocalDate.parse(request.getParameter("fecha_nacimiento"));
+           String mail = request.getParameter("email");
            String telefono = request.getParameter("telefono");
+           
            Socios socio = new Socios(0, nombre, apellido, direccion, localidad, fechaNac, mail, telefono, true);
            sociosDAO.insertSocio(socio);
            dispatcher = request.getRequestDispatcher("Vistas/socios.jsp");
@@ -84,6 +95,7 @@ public class SociosController extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        doGet(request,response);
     }
 
     @Override

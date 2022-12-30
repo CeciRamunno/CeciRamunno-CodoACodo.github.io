@@ -12,21 +12,15 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class SociosDAO
 {
     Connection conex;
     
-    public SociosDAO() //throws SQLException
+    public SociosDAO() throws SQLException
     {
         Conexion cnx = new Conexion();
-        try {
-            conex = cnx.getConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(SociosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        conex = cnx.getConnection();
     }
     
     public List<Socios> listarSocios()
@@ -42,13 +36,13 @@ public class SociosDAO
             
             while(rs.next())
             {
-                int id = rs.getInt("idSocio");
+                int id = rs.getInt("id_socio");
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 String direccion = rs.getString("direccion");
                 String localidad = rs.getString("localidad");
-                LocalDate fnac = rs.getDate("fnac").toLocalDate();
-                String mail = rs.getString("mail");
+                LocalDate fnac = rs.getDate("fecha_nacimiento").toLocalDate();
+                String mail = rs.getString("email");
                 String telefono = rs.getString("telefono");
                 boolean activo = rs.getBoolean("activo");
                 
@@ -64,7 +58,7 @@ public class SociosDAO
         return listaSocios;
     }
     
-    public Socios mostrarSocio(int id)
+    public Socios mostrarSocio(int _id)
     {
         PreparedStatement ps;
         ResultSet rs;
@@ -72,8 +66,8 @@ public class SociosDAO
         
         try
         {
-            ps = conex.prepareStatement("select * from socios where idSocio = ?");
-            ps.setInt(1, id);
+            ps = conex.prepareStatement("select * from socios where id_socio = ?");
+            ps.setInt(1, _id);
             rs = ps.executeQuery();
             
             while(rs.next())
@@ -82,12 +76,12 @@ public class SociosDAO
                 String apellido = rs.getString("apellido");
                 String direccion = rs.getString("direccion");
                 String localidad = rs.getString("localidad");
-                LocalDate fnac = rs.getDate("fnac").toLocalDate();
-                String mail = rs.getString("mail");
+                LocalDate fnac = rs.getDate("fecha_nacimiento").toLocalDate();
+                String mail = rs.getString("email");
                 String telefono = rs.getString("telefono");
                 boolean activo = rs.getBoolean("activo");
 
-                socio = new Socios(id, nombre, apellido, direccion, localidad, fnac, mail, telefono, activo);
+                socio = new Socios(_id, nombre, apellido, direccion, localidad, fnac, mail, telefono, activo);
             }
             return socio;            
         }
@@ -104,7 +98,7 @@ public class SociosDAO
                
         try
         {
-            ps = conex.prepareStatement("insert into socios (nombre, apellido, direccion, localidad, fnac, mail, telefono, activo) values (?,?,?,?,?,?,?,?)");
+            ps = conex.prepareStatement("insert into socios (nombre, apellido, direccion, localidad, fecha_nacimiento, email, telefono, activo) values (?,?,?,?,?,?,?,?)");
             ps.setString(1, socio.getNombre());
             ps.setString(2, socio.getApellido());
             ps.setString(3, socio.getDireccion());
@@ -112,7 +106,7 @@ public class SociosDAO
             ps.setObject(5, socio.getFnac());
             ps.setString(6, socio.getMail());
             ps.setString(7, socio.getTelefono());
-            ps.setBoolean(8, socio.isActivo());
+            ps.setBoolean(8, true);
             ps.execute();
             
             return true;
@@ -124,14 +118,14 @@ public class SociosDAO
         }
     }
     
-    public boolean eliminarSocio(int id)
+    public boolean eliminarSocio(int _id)
     {
          PreparedStatement ps;
          
          try
         {
-            ps = conex.prepareStatement("delete from socios where id = ?");
-            ps.setInt(1, id);
+            ps = conex.prepareStatement("delete from socios where id_socio = ?");
+            ps.setInt(1, _id);
             ps.execute();
             
             return true;
@@ -149,7 +143,7 @@ public class SociosDAO
                
         try
         {
-            ps = conex.prepareStatement("update socios set nombre=?, apellido=?, direccion=?, localidad=?, fnac=?, mail=?, telefono=?, activo=? where idSocio=?");
+            ps = conex.prepareStatement("update socios set nombre=?, apellido=?, direccion=?, localidad=?, fecha_nacimiento=?, email=?, telefono=?, activo=? where id_socio=?");
             ps.setString(1, socio.getNombre());
             ps.setString(2, socio.getApellido());
             ps.setString(3, socio.getDireccion());
@@ -158,6 +152,7 @@ public class SociosDAO
             ps.setString(6, socio.getMail());
             ps.setString(7, socio.getTelefono());
             ps.setBoolean(8, socio.isActivo());
+            ps.setInt(9,socio.getId());
             ps.execute();
             
             return true;
